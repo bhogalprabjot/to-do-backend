@@ -19,9 +19,10 @@ class TaskModel(db.Model):
                 'is_done': self.isDone        
             }
         }
+    @classmethod
+    def get_by_id(cls, task_id):
+        return cls.query.filter_by(id=task_id).first()
     
     def save_to_db(self):
         db.session.add(self)
         db.session.commit()
-
-        

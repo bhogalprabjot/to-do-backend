@@ -14,7 +14,7 @@ def create_tables():
     db.create_all()
 
 
-api.add_resource(Task,'', '/task')
+api.add_resource(Task, '/task', '/task/<int:id>')
 
 
 if __name__ == '__main__':
