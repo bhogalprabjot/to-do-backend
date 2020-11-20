@@ -1,13 +1,13 @@
-from flask_restful import Resource
+from flask_restful import Resource, reqparse
+from models.task import TaskModel
 
-
-"""
-get task/{id}
-add task/{id}
-"""
 class Task(Resource):
-    task = []
+    parser = reqparse.RequestParser()
+    parser.add_argument('name',
+    required=True,
+    )
 
-    def get(self, id):
-        
-
+    def post(self):
+        req_data = Task.parser.parse_args()
+        task = TaskModel(**req_data)
+        return task.json(), 201
